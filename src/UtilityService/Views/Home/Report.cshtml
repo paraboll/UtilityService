@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Отчет по комуналке";
+}
+
+@model List<Report>
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="reportView">
+
+    <table>
+
+         <colgroup>
+             <col style="background-color:gainsboro"/>
+             <col span="2" style="background-color:deepskyblue;"/>
+             <col span="2" style="background-color:firebrick;"/>
+             
+             <col span="2" style="background-color:deepskyblue;"/>
+             <col span="2" style="background-color:firebrick;"/>
+             
+             <col style="background-color:deepskyblue;"/>
+             <col style="background-color:lime;"/>
+             <col style="background-color:firebrick;"/>
+             <col style="background-color:lime;"/>
+
+             <col span="2" style="background-color:gold;"/>
+             <col style="background-color:lime;"/>
+             <col span="2" style="background-color:gold;"/>
+             <col style="background-color:lime;"/>
+             <col span="2" style="background-color:gold;"/>
+             <col style="background-color:lime;"/>
+             <col style="background-color:lime;"/>
+             <col style="background-color:lime;"/>
+         </colgroup>
+
+        <tr>
+            <th style="background-color:aliceblue"></th>
+            <th colspan="4" style="background-color:aliceblue">Счетчик С/У</th>
+            <th colspan="4" style="background-color:aliceblue">Счетчик Кухня</th>
+            <th colspan="4" style="background-color:aliceblue">Общая вода</th>
+            <th colspan="10" style="background-color:aliceblue">Счетчик электро энергии</th>
+            <th style="background-color:aliceblue">Общая сумма</th>
+
+        </tr>
+
+        <tr>
+            <th>Дата расчета</th>
+
+            <th>Холодная вода</th>
+            <th>&Delta;</th>
+            <th>Горячая вода</th>
+            <th>&Delta;</th>
+
+            <th>Холодная вода</th>
+            <th>&Delta;</th>
+            <th>Горячая вода</th>
+            <th>&Delta;</th>
+
+
+            <th>Общая холодная</th>
+            <th>Цена, руб</th>
+            <th>Общая горячая</th>
+            <th>Цена, руб</th>
+
+            <th>T1</th>
+            <th>&Delta; T1</th>
+            <th>Цена, руб</th>
+
+            <th>T2</th>
+            <th>&Delta; T2</th>
+            <th>Цена, руб</th>
+
+            <th>T3</th>
+            <th>&Delta; T3</th>
+            <th>Цена, руб</th>
+
+            <th>Общая цена за электричество, руб</th>
+            <th>Цена, руб</th>
+        </tr>
+
+       @foreach(var item in Model)
+        {
+            <tr>
+                <th>@item.HistoryCalculations.SettlementDate</th>
+                
+                <th>@item.HistoryCounterValues.BathroomColdWater</th>
+                <th>@item.HistoryCalculations.BathroomDeltaColdWater</th>
+                <th>@item.HistoryCounterValues.BathroomHotWater</th>
+                <th>@item.HistoryCalculations.BathroomDeltaHotWater</th>
+
+                <th>@item.HistoryCounterValues.KitchenColdWater</th>
+                <th>@item.HistoryCalculations.KitchenDeltaColdWater</th>
+                <th>@item.HistoryCounterValues.KitchenHotWater</th>
+                <th>@item.HistoryCalculations.KitchenDeltaHotWater</th>
+
+                <th>@item.HistoryCalculations.SumDeltaColdWater</th>
+                <th>@item.HistoryCalculations.CalculateColdWater</th>
+                <th>@item.HistoryCalculations.SumDeltaHotWater</th>
+                <th>@item.HistoryCalculations.CalculateHotWater</th>
+                
+                <th>@item.HistoryCounterValues.ElectricityT1Value</th>
+                <th>@item.HistoryCalculations.ElectricityDeltaT1</th>
+                <th>@item.HistoryCalculations.CalculateElectricityT1</th>
+
+                <th>@item.HistoryCounterValues.ElectricityT2Value</th>
+                <th>@item.HistoryCalculations.ElectricityDeltaT2</th>
+                <th>@item.HistoryCalculations.CalculateElectricityT2</th>
+
+                <th>@item.HistoryCounterValues.ElectricityT3Value</th>
+                <th>@item.HistoryCalculations.ElectricityDeltaT3</th>
+                <th>@item.HistoryCalculations.CalculateElectricityT3</th>
+
+                <th>@item.HistoryCalculations.CalculateAllElectricity</th>
+                <th>@item.HistoryCalculations.CalculateSum</th>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

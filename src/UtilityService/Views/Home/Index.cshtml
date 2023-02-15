@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Подсчет камуналки.";
+}
+
+@model CurrentCoefficients
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <div class="FormUpdateСoefficients" style="width:600px; float:left;">
+
+        <form action="/home/UpdateСoefficients" method="post" 
+            style="width:600px; margin-top: 20px;">
+            
+            <label style="font-size:20px;">Настройка коэфициентов</label>  
+            <table>
+                <colgroup>
+                    <col />
+                    <col style="background-color:LightCyan;" />
+                    <col />
+                </colgroup>
+
+                <tr>
+                    <th></th>
+                    <th>Текущее значение</th>
+                    <th>Новые значения (Н: 3,14)</th>
+                </tr>
+
+                <tr>
+                    <th><label for="DrinkingWater">Тариф на питьевую воду:</label></th>
+                    <th><label>@Model.DrinkingWater</label></th>
+                    <th><input type="text" name="DrinkingWater" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="HotWater">Тариф на горячую воду:</label></th>
+                    <th><label>@Model.HotWater</label></th>
+                    <th><input type="text" name="HotWater" /></th>   
+                </tr>
+
+                <tr>
+                    <th><label for="WaterDisposal">Тариф на водоотведение:</label></th>
+                    <th><label>@Model.WaterDisposal</label></th>
+                     <th><input type="text" name="WaterDisposal" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="ElectricityT1">Тариф на электроэнергию Т1:</label></th>
+                    <th><label>@Model.ElectricityT1</label></th>
+                    <th><input type="text" name="ElectricityT1" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="ElectricityT2">Тариф на электроэнергию Т2:</label></th>
+                    <th><label>@Model.ElectricityT2</label></th>
+                     <th><input type="text" name="ElectricityT2" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="ElectricityT3">Тариф на электроэнергию Т3:</label></th>
+                    <th><label>@Model.ElectricityT3</label></th>
+                    <th><input type="text" name="ElectricityT3" /></th>
+                </tr>
+            </table>
+
+            <input type="submit" name="submitUpdate" value="Обновить"/>
+        </form>
+        
+    </div>
+
+    <div class="Сalculations" style="width:400px; float:left;">
+        <form action="/home/CalculatePay" method="post" 
+            style="width:400px; margin-top: 20px;">
+
+            <label style="font-size:20px;">Показания счетчиков</label>  
+            <table>
+                <colgroup>
+                    <col />
+                    <col style="background-color:LightCyan;" />
+                </colgroup>
+
+                <tr>
+                    <th></th>
+                    <th>Показания</th>
+
+                </tr>
+
+                <tr>
+                    <th><label for="KitchenHotWater">Кухня горячая вода:</label></th>
+                    <th><input type="text" name="KitchenHotWater" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="KitchenColdWater">Кухня холодная вода:</label></th>
+                    <th><input type="text" name="KitchenColdWater" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="BathroomHotWater">Ванная горячая вода:</label></th>
+                    <th><input type="text" name="BathroomHotWater" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="BathroomColdWater">Ванная холодная вода:</label></th>
+                    <th><input type="text" name="BathroomColdWater" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="ElectricityT1Value">Электроэнергия Т1:</label></th>
+                    <th><input type="text" name="ElectricityT1Value" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="ElectricityT2Value">Электроэнергия Т2:</label></th>
+                    <th><input type="text" name="ElectricityT2Value" /></th>
+                </tr>
+
+                <tr>
+                    <th><label for="ElectricityT3Value">Электроэнергия Т3:</label></th>
+                    <th><input type="text" name="ElectricityT3Value" /></th>
+                </tr>
+
+            </table>
+
+            <input type="submit" name="submitPay" value="Расчитать"/>
+
+        </form>
+    </div>
+
+    <div style="clear:both;"></div>
+</div>
