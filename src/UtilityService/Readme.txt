@@ -1,15 +1,15 @@
-Для работы службы необходима ASP.NET Core Runtime 3.1
+Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃР»СѓР¶Р±С‹ РЅРµРѕР±С…РѕРґРёРјР° ASP.NET Core Runtime 3.1
 
-1) Создание службы: 
-    sc create "A_UtilityService" binpath="путь до UtilityService.exe"
-    Н: sc create "A_UtilityService" binpath="C:\MyPetProjects\UtilityService\UtilityService.exe" 
+1) РЎРѕР·РґР°РЅРёРµ СЃР»СѓР¶Р±С‹: 
+    sc create "A_UtilityService" binpath="РїСѓС‚СЊ РґРѕ UtilityService.exe"
+    Рќ: sc create "A_UtilityService" binpath="C:\MyPetProjects\UtilityService\UtilityService.exe" 
     
     sc start A_UtilityService
     sc stop A_UtilityService
     sc stop A_UtilityService
     sc delete A_UtilityService
 
-2) Настройка пути для развертывания сервиса указываеттся в WindowsService.json
+2) РќР°СЃС‚СЂРѕР№РєР° РїСѓС‚Рё РґР»СЏ СЂР°Р·РІРµСЂС‚С‹РІР°РЅРёСЏ СЃРµСЂРІРёСЃР° СѓРєР°Р·С‹РІР°РµС‚С‚СЃСЏ РІ WindowsService.json
 
 {
   "Kestrel": {
@@ -24,7 +24,7 @@
   }
 }
 
-3) настройка БД SQLite указывается в appsettings.json
+3) РЅР°СЃС‚СЂРѕР№РєР° Р‘Р” SQLite СѓРєР°Р·С‹РІР°РµС‚СЃСЏ РІ appsettings.json
 
 "DBConfig": {
     "Name": "SQLite",
