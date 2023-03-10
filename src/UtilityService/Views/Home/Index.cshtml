@@ -2,7 +2,7 @@
     ViewData["Title"] = "Подсчет камуналки.";
 }
 
-@model CurrentCoefficients
+@model IndexDTO
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -28,37 +28,37 @@
 
                 <tr>
                     <th><label for="DrinkingWater">Тариф на питьевую воду:</label></th>
-                    <th><label>@Model.DrinkingWater</label></th>
+                    <th><label>@Model.CurrentCoefficients.DrinkingWater</label></th>
                     <th><input type="text" name="DrinkingWater" /></th>
                 </tr>
 
                 <tr>
                     <th><label for="HotWater">Тариф на горячую воду:</label></th>
-                    <th><label>@Model.HotWater</label></th>
+                    <th><label>@Model.CurrentCoefficients.HotWater</label></th>
                     <th><input type="text" name="HotWater" /></th>   
                 </tr>
 
                 <tr>
                     <th><label for="WaterDisposal">Тариф на водоотведение:</label></th>
-                    <th><label>@Model.WaterDisposal</label></th>
+                    <th><label>@Model.CurrentCoefficients.WaterDisposal</label></th>
                      <th><input type="text" name="WaterDisposal" /></th>
                 </tr>
 
                 <tr>
                     <th><label for="ElectricityT1">Тариф на электроэнергию Т1:</label></th>
-                    <th><label>@Model.ElectricityT1</label></th>
+                    <th><label>@Model.CurrentCoefficients.ElectricityT1</label></th>
                     <th><input type="text" name="ElectricityT1" /></th>
                 </tr>
 
                 <tr>
                     <th><label for="ElectricityT2">Тариф на электроэнергию Т2:</label></th>
-                    <th><label>@Model.ElectricityT2</label></th>
+                    <th><label>@Model.CurrentCoefficients.ElectricityT2</label></th>
                      <th><input type="text" name="ElectricityT2" /></th>
                 </tr>
 
                 <tr>
                     <th><label for="ElectricityT3">Тариф на электроэнергию Т3:</label></th>
-                    <th><label>@Model.ElectricityT3</label></th>
+                    <th><label>@Model.CurrentCoefficients.ElectricityT3</label></th>
                     <th><input type="text" name="ElectricityT3" /></th>
                 </tr>
             </table>
@@ -82,42 +82,49 @@
                 <tr>
                     <th></th>
                     <th>Показания</th>
-
+                    <th>Прошлый месяц</th>
                 </tr>
 
                 <tr>
                     <th><label for="KitchenHotWater">Кухня горячая вода:</label></th>
                     <th><input type="text" name="KitchenHotWater" /></th>
+                    <th>@Model.CounterValues.KitchenHotWater</th>
                 </tr>
 
                 <tr>
                     <th><label for="KitchenColdWater">Кухня холодная вода:</label></th>
                     <th><input type="text" name="KitchenColdWater" /></th>
+                    <th>@Model.CounterValues.KitchenColdWater</th>
                 </tr>
 
                 <tr>
                     <th><label for="BathroomHotWater">Ванная горячая вода:</label></th>
                     <th><input type="text" name="BathroomHotWater" /></th>
+                    <th>@Model.CounterValues.BathroomHotWater</th>
                 </tr>
 
                 <tr>
                     <th><label for="BathroomColdWater">Ванная холодная вода:</label></th>
                     <th><input type="text" name="BathroomColdWater" /></th>
+                    <th>@Model.CounterValues.BathroomColdWater</th>
                 </tr>
 
                 <tr>
                     <th><label for="ElectricityT1Value">Электроэнергия Т1:</label></th>
                     <th><input type="text" name="ElectricityT1Value" /></th>
+                     <th>@Model.CounterValues.ElectricityT1Value</th>
                 </tr>
 
                 <tr>
                     <th><label for="ElectricityT2Value">Электроэнергия Т2:</label></th>
                     <th><input type="text" name="ElectricityT2Value" /></th>
+                    <th>@Model.CounterValues.ElectricityT2Value</th>
                 </tr>
 
                 <tr>
                     <th><label for="ElectricityT3Value">Электроэнергия Т3:</label></th>
                     <th><input type="text" name="ElectricityT3Value" /></th>
+                    <th>@Model.CounterValues.ElectricityT3Value</th>
                 </tr>
 
             </table>

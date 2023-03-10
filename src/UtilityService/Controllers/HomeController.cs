@@ -37,19 +37,30 @@ namespace UtilityService.Controllers
 
         [HttpGet]
         public IActionResult Index() 
-        { 
-            return View(_currentCoefficientRepository.GetCurrentCoefficients()); 
+        {
+            var result = new IndexDTO()
+            {
+                CounterValues = _historyCounterValuesRepository.GetLastCounterValues(),
+                CurrentCoefficients = _currentCoefficientRepository.GetCurrentCoefficients()
+            };
+
+            return View(result); 
         }
 
         [HttpPost]
         public IActionResult UpdateСoefficients(CurrentCoefficients coefficients)
         {
-            var result =  _currentCoefficientRepository.GetCurrentCoefficients();
-
-            if (result.Overwrite(coefficients))
+            var currentCoefficients =  _currentCoefficientRepository.GetCurrentCoefficients();
+            if (currentCoefficients.Overwrite(coefficients))
             {
-                _currentCoefficientRepository.SetCurrentCoefficients(result);
+                _currentCoefficientRepository.SetCurrentCoefficients(currentCoefficients);
             }
+
+            var result = new IndexDTO()
+            {
+                CurrentCoefficients = currentCoefficients,
+                CounterValues = _historyCounterValuesRepository.GetLastCounterValues()
+            };
              
             return View("Index", result); 
         }
