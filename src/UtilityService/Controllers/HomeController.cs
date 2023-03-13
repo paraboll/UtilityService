@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UtilityService.Extensions;
 using UtilityService.Models;
 using UtilityService.Repository.Interfaces;
@@ -68,30 +66,23 @@ namespace UtilityService.Controllers
         [HttpPost]
         public IActionResult CalculatePay(CounterValues counterValues)
         {
-            try
-            {
-                counterValues.CheckCounterValues();
+            counterValues.CheckCounterValues(_logger);
 
-                var lastCounterValues = _historyCounterValuesRepository.GetLastCounterValues();
-                var currentCounterValues = _currentCoefficientRepository.GetCurrentCoefficients();
+            var lastCounterValues = _historyCounterValuesRepository.GetLastCounterValues();
+            var currentCounterValues = _currentCoefficientRepository.GetCurrentCoefficients();
 
-                ISettlementService settlementService =
-                    new SettlementService(_logger, lastCounterValues, counterValues,
-                    currentCounterValues.Convert());
+            ISettlementService settlementService =
+                new SettlementService(_logger, lastCounterValues, counterValues,
+                currentCounterValues.Convert());
 
-                var result = settlementService.CalculatePayment();
-                result.Coefficients = currentCounterValues.Convert();
-                result.CounterValues = counterValues;
+            var result = settlementService.CalculatePayment();
+            result.Coefficients = currentCounterValues.Convert();
+            result.CounterValues = counterValues;
 
-                _historyCalculationsRepository.AddCalculations(result);
+            _historyCalculationsRepository.AddCalculations(result);
 
-                return View("Index", currentCounterValues);
-            }
-            catch(Exception exc)
-            {
-                _logger.LogError($"CalculatePay: {exc.Message} - {exc.StackTrace}");
-                 return View("Index", _currentCoefficientRepository.GetCurrentCoefficients());
-            }
+            return View("Index", currentCounterValues);
+            
         }
 
         public IActionResult Report()
@@ -118,9 +109,13 @@ namespace UtilityService.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            var result = new IndexDTO()
+            {
+                CounterValues = _historyCounterValuesRepository.GetLastCounterValues(),
+                CurrentCoefficients = _currentCoefficientRepository.GetCurrentCoefficients()
+            };
 
-        
+            return View("Index", result);
+        }
     }
 }

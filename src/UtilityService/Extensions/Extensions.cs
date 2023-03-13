@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using UtilityService.Models;
 
 namespace UtilityService.Extensions
@@ -50,7 +51,7 @@ namespace UtilityService.Extensions
         }
 
         //TODO: переписать проверку на прошлый месяц.
-        public static void CheckCounterValues(this CounterValues counterValues)
+        public static void CheckCounterValues(this CounterValues counterValues, ILogger log)
         {
             string errorString = string.Empty;
 
@@ -71,6 +72,7 @@ namespace UtilityService.Extensions
 
             if (!string.IsNullOrEmpty(errorString))
             {
+                log.LogTrace(errorString);
                 throw new ArgumentException(errorString);
             }
         }
