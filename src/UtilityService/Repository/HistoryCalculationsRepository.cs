@@ -92,6 +92,12 @@ namespace UtilityService.Repository
             }
         }
 
+        public IEnumerable<int> GetListCalculationsId()
+        {
+            _log.LogTrace($"Вызван метод GetListCalculationsId.");
+            return _dbContext.HistoryCalculations.Select(_ => _.Id);
+        }
+
         public int GetItemCount()
         {
             _log.LogTrace($"Вызван метод GetItemCount.");

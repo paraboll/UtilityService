@@ -92,13 +92,15 @@ namespace UtilityService.Controllers
             //TODO: сервис изначально не расчитан на огромное количество записей.
             //на данном этапе нет смысла придумывать оптимизации на формирование
             //и отображение данных для отчета.
-            for (int i = 1; i <= _historyCalculationsRepository.GetItemCount(); i++)
+            var CalculationsIds = _historyCalculationsRepository.GetListCalculationsId();
+
+            foreach (var CalculationsId in CalculationsIds)
             {
                 reports.Add(new Report()
                 {
-                    HistoryCalculations = _historyCalculationsRepository.GetCalculationsById(i),
-                    HistoryCoefficients = _historyCoefficientRepository.GetCoefficientsById(i),
-                    HistoryCounterValues = _historyCounterValuesRepository.GetCounterValuesById(i)
+                    HistoryCalculations = _historyCalculationsRepository.GetCalculationsById(CalculationsId),
+                    HistoryCoefficients = _historyCoefficientRepository.GetCoefficientsById(CalculationsId),
+                    HistoryCounterValues = _historyCounterValuesRepository.GetCounterValuesById(CalculationsId)
                 });
             }
 

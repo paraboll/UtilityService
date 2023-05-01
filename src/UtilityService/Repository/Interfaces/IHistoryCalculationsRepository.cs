@@ -9,6 +9,7 @@ namespace UtilityService.Repository.Interfaces
         Calculations GetLastCalculations();
         Calculations GetCalculationsById(int id);
         void AddCalculations(Calculations coefficients);
+        IEnumerable<int> GetListCalculationsId();
         int GetItemCount();
     }
 }
